@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "nama": "Arief Rahman",
+    "email": "arief.rahman@example.com",
+    "password": "hashed_password_1",
+    "role": "Admin",
+    "status": "Aktif",
+    "tanggal_registrasi": "2025-01-01",
+    "isLoggedIn": true,
+    "loginCount": 23
+  },
+  {
+    "id": 2,
+    "nama": "Siti Aisyah",
+    "email": "siti.aisyah@example.com",
+    "password": "hashed_password_2",
+    "role": "User",
+    "status": "Aktif",
+    "tanggal_registrasi": "2025-01-02",
+    "isLoggedIn": false,
+    "loginCount": 15
+  },
+  {
+    "id": 3,
+    "nama": "Dwi Handoko",
+    "email": "dwi.handoko@example.com",
+    "password": "hashed_password_3",
+    "role": "User",
+    "status": "Non-Aktif",
+    "tanggal_registrasi": "2025-01-03",
+    "isLoggedIn": false,
+    "loginCount": 8
+  },
+  {
+    "id": 4,
+    "nama": "Fitri Ananda",
+    "email": "fitri.ananda@example.com",
+    "password": "hashed_password_4",
+    "role": "Editor",
+    "status": "Aktif",
+    "tanggal_registrasi": "2025-01-04",
+    "isLoggedIn": true,
+    "loginCount": 30
+  },
+  {
+    "id": 5,
+    "nama": "Budi Santoso",
+    "email": "budi.santoso@example.com",
+    "password": "hashed_password_5",
+    "role": "User",
+    "status": "Aktif",
+    "tanggal_registrasi": "2025-01-05",
+    "isLoggedIn": false,
+    "loginCount": 12
+  }
+]
