@@ -1,3 +1,4 @@
+import { NavLink } from "react-router"
 import styled from "styled-components"
 
 export default function User() {
@@ -5,8 +6,8 @@ export default function User() {
     return (
         <>
                 <Menu>
-                    <button>User</button>
-                    <button>Food</button>
+                    <button><NavLink to="/">User</NavLink></button>
+                    <button><NavLink to="/food">Food</NavLink></button>
                 </Menu>
         </>
     )
@@ -15,6 +16,11 @@ export default function User() {
 
 
 const Menu = styled.div`
+
+a{
+    text-decoration: none;
+}
+
 border: 1px solid white;
 position: fixed;
 left: 50%;
