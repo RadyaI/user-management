@@ -18,7 +18,7 @@ export default function User() {
 const Container = styled.div`
     background-color: #03001C;
     width: 100%;
-    height: 100vh;
+    height: 100vh; 
 `
 
 const Content = styled.div`
