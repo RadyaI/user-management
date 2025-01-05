@@ -37,7 +37,7 @@
     "nama": "Fitri Ananda",
     "email": "fitri.ananda@example.com",
     "password": "hashed_password_4",
-    "role": "Editor",
+    "role": "Admin",
     "status": "Aktif",
     "tanggal_registrasi": "2025-01-04",
     "isLoggedIn": true,

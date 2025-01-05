@@ -17,8 +17,6 @@ export default function User() {
 
 
 const Menu = styled.div`
-
-border: 1px solid white;
 position: fixed;
 left: 50%;
 transform: translateX(-50%);
@@ -38,10 +36,12 @@ button {
     padding: 10px 20px;
     border-radius: 7px;
     font-size: 17px;
-    transition: all 500ms;
+    transition: all 200ms;
+    box-shadow: 2px 2px 0 1px red;
 }
 
 button:hover{
-    transform: scale(1.1);
+    box-shadow: none;
+    transform: translateY(2px);
 }
 `
