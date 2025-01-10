@@ -1,17 +1,36 @@
-import styled from "styled-components"
+import { useEffect } from "react"
 
+import styled from "styled-components"
 import Navbar from './components/navbar'
+
 import userData from "./db/user.json"
 
+// Firebase
+import db from "./db/firebase"
+import { addDoc, collection } from "firebase/firestore"
+
 export default function User() {
+
+    async function setup() {
+        try {
+            await addDoc(collection(db, 'management'), userData)
+            console.log("Berhasil")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        // setup()
+    }, [])
 
     function DisplayUser() {
         const data = userData.map((i, no) =>
             <div className="card" key={no}>
                 <h3>{i.nama}</h3>
                 <p className="email">{i.email}</p>
-                <p><strong>Role:</strong> <span style={{color: i.role == "Admin" ? "yellow" : "grey"}}>{i.role}</span></p>
-                <p><strong>Status:</strong> <span style={{color: i.status == "Aktif" ? "lightgreen" : "red"}}>{i.status}</span></p>
+                <p><strong>Role:</strong> <span style={{ color: i.role == "Admin" ? "yellow" : "grey" }}>{i.role}</span></p>
+                <p><strong>Status:</strong> <span style={{ color: i.status == "Aktif" ? "lightgreen" : "red" }}>{i.status}</span></p>
                 <p><strong>Login Count:</strong> {i.loginCount}</p>
             </div>
         )
