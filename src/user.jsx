@@ -10,9 +10,9 @@ export default function User() {
             <div className="card" key={no}>
                 <h3>{i.nama}</h3>
                 <p className="email">{i.email}</p>
-                <p><strong>Role:</strong> <span style={{color: i.role == "Admin" ? "yellow" : ""}}>{i.role}</span></p>
+                <p><strong>Role:</strong> <span style={{color: i.role == "Admin" ? "yellow" : "grey"}}>{i.role}</span></p>
                 <p><strong>Status:</strong> <span style={{color: i.status == "Aktif" ? "lightgreen" : "red"}}>{i.status}</span></p>
-                <p><strong>Login Count:</strong> 23</p>
+                <p><strong>Login Count:</strong> {i.loginCount}</p>
             </div>
         )
 
