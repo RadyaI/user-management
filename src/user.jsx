@@ -1,27 +1,34 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import styled from "styled-components"
 import Navbar from './components/navbar'
 
-import userData from "./db/user.json"
-
 // Firebase
-import db from "./db/firebase"
-import { addDoc, collection } from "firebase/firestore"
+import { db } from "./db/firebase"
+import { addDoc, collection, onSnapshot } from "firebase/firestore"
 
 export default function User() {
 
-    async function setup() {
+    const [userData, setUserData] = useState([])
+
+    function getData() {
         try {
-            await addDoc(collection(db, 'management'), userData)
-            console.log("Berhasil")
+
+            onSnapshot(collection(db, "management"), (snapshot) => {
+                const temp = []
+                snapshot.forEach((data) => {
+                    temp.push({...data.data(), id: data.id})
+                })
+                setUserData(temp)
+            })
         } catch (error) {
             console.log(error)
         }
     }
 
     useEffect(() => {
-        // setup()
+        getData()
+        // console.log(...userData);
     }, [])
 
     function DisplayUser() {
