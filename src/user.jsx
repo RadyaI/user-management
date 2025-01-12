@@ -5,7 +5,7 @@ import Navbar from './components/navbar'
 
 // Firebase
 import { db } from "./db/firebase"
-import { addDoc, collection, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot } from "firebase/firestore"
 
 export default function User() {
 
@@ -28,7 +28,6 @@ export default function User() {
 
     useEffect(() => {
         getData()
-        // console.log(...userData);
     }, [])
 
     function DisplayUser() {
