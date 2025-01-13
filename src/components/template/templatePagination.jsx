@@ -1,4 +1,36 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+// Styled Components
+const PaginationWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+const PageItem = styled.div`
+  margin: 0 5px;
+`;
+
+const PageLink = styled.button`
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: ${(props) => (props.active ? "lightblue" : "white")};
+  color: ${(props) => (props.active ? "white" : "black")};
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
 
 const PaginationComplexData = () => {
   const data = [
@@ -69,7 +101,7 @@ const PaginationComplexData = () => {
 
   return (
     <div>
-      <h2>Pagination with Complex Data</h2>
+      <h2>Pagination with Styled-Components</h2>
       <table border="1" style={{ width: "100%", textAlign: "left" }}>
         <thead>
           <tr>
@@ -96,20 +128,32 @@ const PaginationComplexData = () => {
           ))}
         </tbody>
       </table>
-      <div style={{ marginTop: "10px" }}>
+      <PaginationWrapper>
+        {/* Tombol Previous */}
+        <PageLink onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+          {"<"}
+        </PageLink>
+
+        {/* Tombol Halaman */}
         {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => handlePageChange(index + 1)}
-            style={{
-              margin: "0 5px",
-              backgroundColor: currentPage === index + 1 ? "lightblue" : "",
-            }}
-          >
-            {index + 1}
-          </button>
+          <PageItem key={index}>
+            <PageLink
+              onClick={() => handlePageChange(index + 1)}
+              active={currentPage === index + 1}
+            >
+              {index + 1}
+            </PageLink>
+          </PageItem>
         ))}
-      </div>
+
+        {/* Tombol Next */}
+        <PageLink
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          {">"}
+        </PageLink>
+      </PaginationWrapper>
     </div>
   );
 };

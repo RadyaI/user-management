@@ -9,7 +9,7 @@ export default function Statistik() {
             <Navbar></Navbar>
             <Container>
                 <Content>
-                    statistik
+                    Statistik
                 </Content>
             </Container>
         </>
