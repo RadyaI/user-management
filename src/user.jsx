@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 
 import styled from "styled-components"
+
+// Komponent
 import Navbar from './components/navbar'
+import UserForm from './components/user/form'
 
 // Firebase
 import { db } from "./db/firebase"
@@ -10,16 +13,20 @@ import { collection, onSnapshot } from "firebase/firestore"
 export default function User() {
 
     const [userData, setUserData] = useState([])
+    const [fetchLoading, setFetchLoading] = useState("")
+
+    const [toggleForm, setToggleForm] = useState(true);
 
     function getData() {
         try {
-
+            setFetchLoading("Loading...")
             onSnapshot(collection(db, "management"), (snapshot) => {
                 const temp = []
                 snapshot.forEach((data) => {
-                    temp.push({...data.data(), id: data.id})
+                    temp.push({ ...data.data(), id: data.id })
                 })
                 setUserData(temp)
+                setFetchLoading("")
             })
         } catch (error) {
             console.log(error)
@@ -52,9 +59,11 @@ export default function User() {
                     <Wrapper>
                         <div className="filter">
                             <input type="text" placeholder="Search..." />
-                            <button>Add</button>
+                            <button onClick={() => setToggleForm(!toggleForm)}>Add</button>
                         </div>
+                        {toggleForm && (<UserForm></UserForm>)}
                         <div className="card-wrap">
+                            <p style={{ color: "white" }}>{fetchLoading}</p>
                             <DisplayUser></DisplayUser>
                         </div>
                     </Wrapper>
@@ -71,6 +80,7 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
+    overflow-y: auto;
     padding-top: 150px;
     margin: 0 auto;
     width: 90%;
@@ -78,6 +88,11 @@ const Content = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &::-webkit-scrollbar{
+        display: none;
+    }
+
 `
 
 const Wrapper = styled.div`
@@ -123,6 +138,7 @@ const Wrapper = styled.div`
         align-items: center;
         flex-wrap: wrap;
         overflow: auto;
+        transition: all 0.5s;
     }
 
     .card {

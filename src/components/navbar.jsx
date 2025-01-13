@@ -6,10 +6,10 @@ export default function User() {
 
     return (
         <>
-                <Menu>
-                    <NavLink to="/"><button>User</button></NavLink>
-                    <NavLink to="/statistik"><button>Statistik</button></NavLink>
-                </Menu>
+            <Menu>
+                <NavLink to="/"><button>User</button></NavLink>
+                <NavLink to="/statistik"><button>Statistik</button></NavLink>
+            </Menu>
         </>
     )
 }
@@ -17,12 +17,12 @@ export default function User() {
 
 
 const Menu = styled.div`
+background-color: #03001C;
 position: fixed;
 left: 50%;
 transform: translateX(-50%);
-margin-top: 30px;
-padding-top: 50px;
-width: 50%;
+padding-top: 25px;
+width: 100%;
 height: auto;
 display: flex;
 justify-content: space-evenly;
