@@ -15,7 +15,7 @@ export default function User() {
     const [userData, setUserData] = useState([])
     const [fetchLoading, setFetchLoading] = useState("")
 
-    const [toggleForm, setToggleForm] = useState(true);
+    const [toggleForm, setToggleForm] = useState(false);
 
     function getData() {
         try {
