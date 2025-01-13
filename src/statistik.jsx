@@ -2,14 +2,14 @@ import styled from "styled-components"
 
 import Navbar from './components/navbar'
 
-export default function Food() {
+export default function Statistik() {
 
     return (
         <>
             <Navbar></Navbar>
             <Container>
                 <Content>
-                    Food
+                    statistik
                 </Content>
             </Container>
         </>

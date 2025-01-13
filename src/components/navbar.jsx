@@ -8,7 +8,7 @@ export default function User() {
         <>
                 <Menu>
                     <NavLink to="/"><button>User</button></NavLink>
-                    <NavLink to="/food"><button>Food</button></NavLink>
+                    <NavLink to="/statistik"><button>Statistik</button></NavLink>
                 </Menu>
         </>
     )

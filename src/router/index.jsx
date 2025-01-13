@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import User from "../user";
-import Food from "../food";
+import statistik from "../statistik";
 
 const router = createBrowserRouter([
     {
@@ -8,8 +8,8 @@ const router = createBrowserRouter([
         Component: User
     },
     {
-        path: "/food",
-        Component: Food
+        path: "/statistik",
+        Component: statistik
     }
 ])
 
