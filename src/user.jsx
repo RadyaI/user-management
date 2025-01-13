@@ -19,7 +19,6 @@ export default function User() {
                 snapshot.forEach((data) => {
                     temp.push({...data.data(), id: data.id})
                 })
-                console.log(temp)
                 setUserData(temp)
             })
         } catch (error) {
