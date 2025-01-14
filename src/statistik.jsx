@@ -16,7 +16,7 @@ export default function Statistik() {
             </Container>
         </>
     )
-}
+}   
 
 const Container = styled.div`
     background-color: #03001C;

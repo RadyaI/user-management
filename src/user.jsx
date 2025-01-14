@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import styled from "styled-components"
 
@@ -12,10 +12,12 @@ import { collection, onSnapshot } from "firebase/firestore"
 
 export default function User() {
 
+    const [search, setSearch] = useState("");
     const [userData, setUserData] = useState([])
     const [fetchLoading, setFetchLoading] = useState("")
 
     const [toggleForm, setToggleForm] = useState(false);
+    const [btnText, setBtnText] = useState("ADD")
 
     function getData() {
         try {
@@ -33,13 +35,28 @@ export default function User() {
         }
     }
 
+    function handleToggleForm() {
+        setToggleForm(!toggleForm)
+        setBtnText(toggleForm == true ? "ADD" : "CLOSE")
+    }
+
     useEffect(() => {
         getData()
     }, [])
 
     function DisplayUser() {
-        const data = userData.map((i, no) =>
-            <div className="card" key={no}>
+        let userSearch = userData
+
+        userSearch = useMemo(() => {
+            if (search !== "") {
+                return userSearch.filter((e) => e.nama.toLowerCase().toString().includes(search.toLowerCase()))
+            } else {
+                return userData
+            }
+        }, [search, userData])
+
+        const data = userSearch.map((i) =>
+            <div className="card" key={i.id}>
                 <h3>{i.nama}</h3>
                 <p className="email">{i.email}</p>
                 <p><strong>Role:</strong> <span style={{ color: i.role == "Admin" ? "yellow" : "grey" }}>{i.role}</span></p>
@@ -58,8 +75,8 @@ export default function User() {
                 <Content>
                     <Wrapper>
                         <div className="filter">
-                            <input type="text" placeholder="Search..." />
-                            <button onClick={() => setToggleForm(!toggleForm)}>Add</button>
+                            <input type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />
+                            <button onClick={() => handleToggleForm()}>{btnText}</button>
                         </div>
                         {toggleForm && (<UserForm></UserForm>)}
                         <div className="card-wrap">
@@ -141,6 +158,20 @@ const Wrapper = styled.div`
         transition: all 0.5s;
     }
 
+    .card-wrap::-webkit-scrollbar{
+        width: 10px;
+    }
+
+    .card-wrap::-webkit-scrollbar-track{
+        display: none;
+    }
+
+    .card-wrap::-webkit-scrollbar-thumb{
+        border-radius: 7px;
+        background-color: white;
+        cursor: crosshair;
+    }
+
     .card {
         background-color: #2c3e50;
         margin-right: 20px;
@@ -152,6 +183,7 @@ const Wrapper = styled.div`
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         font-family: 'Arial', sans-serif;
     }
+    
 
     .card h3 {
         margin: 0 0 10px 0;
