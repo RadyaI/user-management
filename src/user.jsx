@@ -8,7 +8,7 @@ import UserForm from './components/user/form'
 
 // Firebase
 import { db } from "./db/firebase"
-import { collection, onSnapshot } from "firebase/firestore"
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore"
 
 export default function User() {
 
@@ -30,6 +30,31 @@ export default function User() {
                 setUserData(temp)
                 setFetchLoading("")
             })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async function deleteData(id) {
+        try {
+            const alert = await swal({
+                icon: 'warning',
+                title: "Yakin mau dihapus?",
+                buttons: ["Engga", "Iya"],
+                dangerMode: true
+            })
+
+            if (alert) {
+                const target = doc(db, "management", id)
+                deleteDoc(target)
+                swal({
+                    icon: 'success',
+                    title: "Berhasil hapus data",
+                    button: false,
+                    timer: 300
+                })
+            }
+
         } catch (error) {
             console.log(error)
         }
@@ -62,6 +87,7 @@ export default function User() {
                 <p><strong>Role:</strong> <span style={{ color: i.role == "Admin" ? "yellow" : "grey" }}>{i.role}</span></p>
                 <p><strong>Status:</strong> <span style={{ color: i.status == "Aktif" ? "lightgreen" : "red" }}>{i.status}</span></p>
                 <p><strong>Login Count:</strong> {i.loginCount}</p>
+                <p><small><span style={{ color: "lightblue" }}>EDIT</span> | <span style={{ color: "red" }} onClick={() => deleteData(i.id)}>DELETE</span></small></p>
             </div>
         )
 
@@ -182,6 +208,7 @@ const Wrapper = styled.div`
         border-radius: 10px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         font-family: 'Arial', sans-serif;
+        cursor: pointer;
     }
     
 

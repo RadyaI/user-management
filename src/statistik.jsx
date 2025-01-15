@@ -2,8 +2,12 @@ import styled from "styled-components"
 
 // Component
 import Navbar from './components/navbar'
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router";
 
 export default function Statistik() {
+
     return (
         <>
             <Navbar></Navbar>
@@ -16,7 +20,7 @@ export default function Statistik() {
             </Container>
         </>
     )
-}   
+}
 
 const Container = styled.div`
     background-color: #03001C;
