@@ -215,6 +215,11 @@ const Wrapper = styled.div`
     .card h3 {
         margin: 0 0 10px 0;
         font-size: 1.5rem;
+        width: 100%;
+        height: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .card .email {

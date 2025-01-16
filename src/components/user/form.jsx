@@ -9,7 +9,7 @@ import { addDoc, collection, Timestamp } from "firebase/firestore"
 
 export default function userForm() {
 
-    const [formData, setFormData] = useState([]) 
+    const [formData, setFormData] = useState([])
 
     function handleForm(e) {
         setFormData((prevData) => ({
@@ -69,7 +69,7 @@ export default function userForm() {
                 </div>
                 <div className="input-group">
                     <label className="label">Role </label>
-                    <select className="input" name="role"  onChange={(e) => handleForm(e)} style={{ width: "52%" }}>
+                    <select className="input" name="role" onChange={(e) => handleForm(e)} style={{ width: "52%" }}>
                         <option value="-">-</option>
                         <option value="Admin">Admin</option>
                         <option value="User">User</option>
@@ -77,7 +77,7 @@ export default function userForm() {
                 </div>
                 <div className="input-group">
                     <label className="label">Password </label>
-                    <input type="password" className="input"  value={formData.password} name="password" onChange={(e) => handleForm(e)} placeholder="Masukkan Password..." />
+                    <input type="password" className="input" value={formData.password} name="password" onChange={(e) => handleForm(e)} placeholder="Masukkan Password..." />
                 </div>
 
                 <button className="btn-submit" onClick={submit}>ADD</button>

@@ -1,21 +1,15 @@
 import styled from "styled-components"
 
-// Component
+// Komponent
 import Navbar from './components/navbar'
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router";
 
 export default function Statistik() {
-
     return (
         <>
-            <Navbar></Navbar>
+        <Navbar/ >
             <Container>
                 <Content>
-                    <div className="wrapper">
-                        {/* Isi konten disini */}
-                    </div>
+                    {/* Disini konten yang panjang blablabla... */}
                 </Content>
             </Container>
         </>
@@ -23,26 +17,12 @@ export default function Statistik() {
 }
 
 const Container = styled.div`
-    background-color: #03001C;
     width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-`;
+    height: 100dvh;
+    overflow: auto;
+    background-color: #03001C;
+`
 
 const Content = styled.div`
-    border: 1px solid white;
-    margin: 0 auto;
-    width: 90%;
-    min-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-
-    .wrapper {
-        border: 1px solid lightgreen;
-        width: 100%;
-        min-height: 85vh;
-    }
+    /* style */
 `
