@@ -5,6 +5,7 @@ import styled from "styled-components"
 // Komponent
 import Navbar from './components/navbar'
 import UserForm from './components/user/form'
+import UpdateUser from "./components/user/update"
 
 // Firebase
 import { db } from "./db/firebase"
@@ -17,6 +18,7 @@ export default function User() {
     const [fetchLoading, setFetchLoading] = useState("")
 
     const [toggleForm, setToggleForm] = useState(false);
+    const [toggleUpdateForm, setToggleUpdateForm] = useState(false)
     const [btnText, setBtnText] = useState("ADD")
 
     function getData() {
@@ -65,6 +67,11 @@ export default function User() {
         setBtnText(toggleForm == true ? "ADD" : "CLOSE")
     }
 
+    function handleUpdateForm(data) {
+        console.log(data)
+        setToggleUpdateForm(data)
+    }
+
     useEffect(() => {
         getData()
     }, [])
@@ -87,7 +94,7 @@ export default function User() {
                 <p><strong>Role:</strong> <span style={{ color: i.role == "Admin" ? "yellow" : "grey" }}>{i.role}</span></p>
                 <p><strong>Status:</strong> <span style={{ color: i.status == "Aktif" ? "lightgreen" : "red" }}>{i.status}</span></p>
                 <p><strong>Login Count:</strong> {i.loginCount}</p>
-                <p><small><span style={{ color: "lightblue" }}>EDIT</span> | <span style={{ color: "red" }} onClick={() => deleteData(i.id)}>DELETE</span></small></p>
+                <p><small><span style={{ color: "lightblue" }} onClick={() => setToggleUpdateForm(true)}>EDIT</span> | <span style={{ color: "red" }} onClick={() => deleteData(i.id)}>DELETE</span></small></p>
             </div>
         )
 
@@ -97,6 +104,7 @@ export default function User() {
     return (
         <>
             <Navbar></Navbar>
+            { toggleUpdateForm && (<UpdateUser toggleForm={handleUpdateForm}></UpdateUser >)}
             <Container>
                 <Content>
                     <Wrapper>
