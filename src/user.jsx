@@ -15,6 +15,7 @@ export default function User() {
 
     const [search, setSearch] = useState("");
     const [userData, setUserData] = useState([])
+    const [updateId, setUpdateId] = useState(0)
     const [fetchLoading, setFetchLoading] = useState("")
 
     const [toggleForm, setToggleForm] = useState(false);
@@ -67,8 +68,8 @@ export default function User() {
         setBtnText(toggleForm == true ? "ADD" : "CLOSE")
     }
 
-    function handleUpdateForm(data) {
-        console.log(data)
+    function handleUpdateForm(data, id) {
+        setUpdateId(id)
         setToggleUpdateForm(data)
     }
 
@@ -94,7 +95,7 @@ export default function User() {
                 <p><strong>Role:</strong> <span style={{ color: i.role == "Admin" ? "yellow" : "grey" }}>{i.role}</span></p>
                 <p><strong>Status:</strong> <span style={{ color: i.status == "Aktif" ? "lightgreen" : "red" }}>{i.status}</span></p>
                 <p><strong>Login Count:</strong> {i.loginCount}</p>
-                <p><small><span style={{ color: "lightblue" }} onClick={() => setToggleUpdateForm(true)}>EDIT</span> | <span style={{ color: "red" }} onClick={() => deleteData(i.id)}>DELETE</span></small></p>
+                <p><small><span style={{ color: "lightblue" }} onClick={() => handleUpdateForm(true, i.id)}>EDIT</span> | <span style={{ color: "red" }} onClick={() => deleteData(i.id)}>DELETE</span></small></p>
             </div>
         )
 
@@ -104,7 +105,7 @@ export default function User() {
     return (
         <>
             <Navbar></Navbar>
-            { toggleUpdateForm && (<UpdateUser toggleForm={handleUpdateForm}></UpdateUser >)}
+            {toggleUpdateForm && (<UpdateUser toggleForm={handleUpdateForm} getId={updateId}></UpdateUser >)}
             <Container>
                 <Content>
                     <Wrapper>
