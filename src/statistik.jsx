@@ -1,15 +1,48 @@
-import styled from "styled-components"
+import { useEffect, useState } from "react"
 
 // Komponent
+import styled from "styled-components"
 import Navbar from './components/navbar'
 
+// Firebase
+import { db } from "./db/firebase"
+import { collection, onSnapshot } from "firebase/firestore"
+
 export default function Statistik() {
+
+    const [userData, setUserData] = useState([])
+
+    function getUser() {
+        try {
+            onSnapshot(collection(db, "management"))         
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+
+    }, [])
+
     return (
         <>
-        <Navbar/ >
+            <Navbar />
             <Container>
                 <Content>
-                    {/* Disini konten yang panjang blablabla... */}
+                    <UserCount>
+                        <div className="card">
+                            <p>20</p>
+                            <p>User Active</p>
+                        </div>
+                        <div className="card">
+                            <p>20</p>
+                            <p>Total User Active</p>
+                        </div>
+                        <div className="card">
+                            <p>20</p>
+                            <p><span style={{ color: "lightgreen" }}>Admin</span> Active</p>
+                        </div>
+                    </UserCount>
                 </Content>
             </Container>
         </>
@@ -19,10 +52,65 @@ export default function Statistik() {
 const Container = styled.div`
     width: 100%;
     height: 100dvh;
-    overflow: auto;
+    overflow-y: auto;
     background-color: #03001C;
+
+    &::-webkit-scrollbar{
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track{
+        display: none;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        background-color: lightblue;
+    }
 `
 
 const Content = styled.div`
-    /* style */
+    margin-top: 100px;
+    width: 100%;
+    height: 100%;
+`
+
+const UserCount = styled.div`
+    width: 90%;
+    margin: 0 auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+
+    .card{
+        border: 1px solid white;
+        color: white;
+        padding: 20px;
+        width: 18%;
+        height: 120px;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .card p:nth-child(1){
+        font-size: 60px;
+    }
+    .card p:nth-child(2){
+        font-size: 20px;
+    }
+
+    @media only screen and (max-width: 700px){
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+
+        .card{
+            width: 70%;
+        }
+    }
 `
