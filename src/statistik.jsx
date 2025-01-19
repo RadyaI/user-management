@@ -6,22 +6,40 @@ import Navbar from './components/navbar'
 
 // Firebase
 import { db } from "./db/firebase"
-import { collection, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot, query, where } from "firebase/firestore"
 
 export default function Statistik() {
 
-    const [userData, setUserData] = useState([])
+    const [userActive, setUserActive] = useState(0)
+    const [totalUserActive, setTotalUserActive] = useState(0)
+    const [adminActive, setAdminActive] = useState(0)
+
+    function olehData(data) {
+        try {
+            setUserActive(data.filter((i) => i.status === "Aktif" && i.role === "User").length)
+            setTotalUserActive(data.filter((i) => i.status === "Aktif").length)
+            setAdminActive(data.filter((i) => i.status === "Aktif" && i.role === "Admin").length)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     function getUser() {
         try {
-            onSnapshot(collection(db, "management"))         
+            onSnapshot(query(collection(db, "management"), where("status", "==", "Aktif")), (snapshot) => {
+                let temp = []
+                snapshot.forEach((data) => {
+                    temp.push({ ...data.data(), id: data.id })
+                })
+                olehData(temp)
+            })
         } catch (error) {
             console.log(error)
         }
     }
 
     useEffect(() => {
-
+        getUser()
     }, [])
 
     return (
@@ -31,15 +49,15 @@ export default function Statistik() {
                 <Content>
                     <UserCount>
                         <div className="card">
-                            <p>20</p>
+                            <p>{userActive}</p>
                             <p>User Active</p>
                         </div>
                         <div className="card">
-                            <p>20</p>
+                            <p>{totalUserActive}</p>
                             <p>Total User Active</p>
                         </div>
                         <div className="card">
-                            <p>20</p>
+                            <p>{adminActive}</p>
                             <p><span style={{ color: "lightgreen" }}>Admin</span> Active</p>
                         </div>
                     </UserCount>
