@@ -9,6 +9,7 @@ export default function User() {
             <Menu>
                 <NavLink to="/"><button>User</button></NavLink>
                 <NavLink to="/statistik"><button>Statistik</button></NavLink>
+                <NavLink to="/Login"><button>Login</button></NavLink>
             </Menu>
         </>
     )
