@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 // Komponent
 import styled from "styled-components"
 import Navbar from './components/navbar'
+import TemplatePagination from './components/statistik/templatePagination'
 
 // Firebase
 import { db } from "./db/firebase"
@@ -61,6 +62,7 @@ export default function Statistik() {
                             <p><span style={{ color: "lightgreen" }}>Admin</span> Active</p>
                         </div>
                     </UserCount>
+                    <TemplatePagination></TemplatePagination>
                 </Content>
             </Container>
         </>
