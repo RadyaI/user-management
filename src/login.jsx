@@ -19,6 +19,19 @@ const Container = styled.div`
     height: 100dvh;
     background-color: #03001C;
     overflow-y: auto;
+
+    &::-webkit-scrollbar{
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track{
+        display: none;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        background-color: lightblue;
+    }
 `
 
 const Content = styled.div`
