@@ -27,20 +27,27 @@ export default function Statistik() {
 
     function getUser() {
         try {
-            onSnapshot(query(collection(db, "management"), where("status", "==", "Aktif")), (snapshot) => {
+            const unsubscribe = onSnapshot(query(collection(db, "management"), where("status", "==", "Aktif")), (snapshot) => {
                 let temp = []
                 snapshot.forEach((data) => {
                     temp.push({ ...data.data(), id: data.id })
                 })
                 olehData(temp)
             })
+            return unsubscribe
         } catch (error) {
             console.log(error)
         }
+
     }
 
     useEffect(() => {
-        getUser()
+        const unsubscribe = getUser()
+
+        return () => {
+            unsubscribe()
+        }
+
     }, [])
 
     return (
