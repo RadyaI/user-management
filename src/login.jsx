@@ -59,6 +59,29 @@ export default function Login() {
         }
     }
 
+    async function userLogout() {
+        try {
+            const alert = await sweetAlert({
+                icon: 'warning',
+                title: 'Ingin Logout?',
+                buttons: ['Engga', 'Iya'],
+                dangerMode: true
+            })
+
+            if (alert) {
+                await updateDoc(doc(db, "management", Cookies.get("id")), {
+                    isLoggedIn: false
+                })
+                Cookies.set("isLoggedIn", false)
+                Cookies.remove("id")
+                setIsLoggedIn(false)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
             <Navbar></Navbar>
@@ -69,6 +92,7 @@ export default function Login() {
                     <LoginOption>
                         <button onClick={() => googleLogin()}>{googleLoading}</button>
                         <button>Email/Password</button>
+                        { isLoggedIn && (<button onClick={() => userLogout()} style={{ backgroundColor: "darkred", color: "white" }}>Logout</button>)}
                     </LoginOption>
                 </Content>
             </Container>
