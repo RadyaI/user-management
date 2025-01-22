@@ -13,7 +13,10 @@ import { addDoc, collection, doc, getDocs, query, Timestamp, updateDoc, where } 
 export default function Login() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+    // Button update
     const [googleLoading, setGoogleLoading] = useState("Google")
+    const [btnLogout, setBtnLogout] = useState("Logout")
 
     useEffect(() => {
         setIsLoggedIn(Cookies.get("isLoggedIn") === "true")
@@ -67,7 +70,7 @@ export default function Login() {
                 buttons: ['Engga', 'Iya'],
                 dangerMode: true
             })
-
+            setBtnLogout("Loading...")
             if (alert) {
                 await updateDoc(doc(db, "management", Cookies.get("id")), {
                     isLoggedIn: false
@@ -76,7 +79,7 @@ export default function Login() {
                 Cookies.remove("id")
                 setIsLoggedIn(false)
             }
-
+            setBtnLogout("Logout")
         } catch (error) {
             console.log(error)
         }
@@ -92,7 +95,7 @@ export default function Login() {
                     <LoginOption>
                         <button onClick={() => googleLogin()}>{googleLoading}</button>
                         <button>Email/Password</button>
-                        { isLoggedIn && (<button onClick={() => userLogout()} style={{ backgroundColor: "darkred", color: "white" }}>Logout</button>)}
+                        { isLoggedIn && (<button onClick={() => userLogout()} style={{ backgroundColor: "darkred", color: "white" }}>{btnLogout}</button>)}
                     </LoginOption>
                 </Content>
             </Container>
