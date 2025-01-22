@@ -1,13 +1,25 @@
+import { useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
+
+// Component
 import styled from 'styled-components'
 import Navbar from './components/navbar'
 
 export default function Login() {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+    useEffect(() => {
+        setIsLoggedIn(Cookies.get("isLoggedIn") === "true")
+    }, [])
+
     return (
         <>
             <Navbar></Navbar>
             <Container>
                 <Content>
-                    <Status>Anda sedang login</Status>
+                    {isLoggedIn && (<Status style={{color: "lightgreen"}}>Anda sedang login</Status>)}
+                    {!isLoggedIn && (<Status style={{color: "red"}}>Anda sedang Logout</Status>)}
                 </Content>
             </Container>
         </>
