@@ -7,7 +7,7 @@ export default function Login() {
             <Navbar></Navbar>
             <Container>
                 <Content>
-                    Welcome to login simulation
+                    <Status>Anda sedang login</Status>
                 </Content>
             </Container>
         </>
@@ -40,5 +40,14 @@ const Content = styled.div`
     width: 90%;
     height: 200px;
     margin: 0 auto;
-    margin-top: 100px;
+    margin-top: 100px;    
+`
+
+const Status = styled.div`
+    color: white;
+    width: fit-content;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 auto;
 `
