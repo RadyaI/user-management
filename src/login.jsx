@@ -46,7 +46,9 @@ export default function Login() {
                 await updateDoc(doc(db, "management", id), {
                     isLoggedIn: true
                 })
+                Cookies.set("id", id)
             } else {
+                Cookies.set("id", newUser.id)
                 await addDoc(collection(db, "management"), newUser)
             }
             Cookies.set("isLoggedIn", true)
