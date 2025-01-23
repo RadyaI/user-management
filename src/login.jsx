@@ -93,9 +93,9 @@ export default function Login() {
                     {isLoggedIn && (<Status style={{ color: "lightgreen" }}>Anda sedang login</Status>)}
                     {!isLoggedIn && (<Status style={{ color: "red" }}>Anda sedang Logout</Status>)}
                     <LoginOption>
-                        <button onClick={() => googleLogin()}>{googleLoading}</button>
-                        <button>Email/Password</button>
-                        { isLoggedIn && (<button onClick={() => userLogout()} style={{ backgroundColor: "darkred", color: "white" }}>{btnLogout}</button>)}
+                        {!isLoggedIn && (<button onClick={() => googleLogin()}>{googleLoading}</button>)}
+                        {!isLoggedIn && (<button>Email/Password</button>)}
+                        {isLoggedIn && (<button onClick={() => userLogout()} style={{ backgroundColor: "darkred", color: "white" }}>{btnLogout}</button>)}
                     </LoginOption>
                 </Content>
             </Container>
