@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export default function PaginationComplexData() {
+export default function PaginationComplexData({getUser}) {
   const data = [
     {
       id: "1ESAcT3acI8hX6J3JceV",
@@ -80,20 +80,16 @@ export default function PaginationComplexData() {
               <th>Email</th>
               <th>Status</th>
               <th>Role</th>
-              <th>Login Count</th>
-              <th>Registrasi</th>
             </tr>
           </thead>
           <tbody>
-            {currentData.map((item) => (
+            {getUser.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.nama}</td>
                 <td>{item.email}</td>
                 <td>{item.status}</td>
                 <td>{item.role}</td>
-                <td>{item.loginCount}</td>
-                <td>{item.tanggal_registrasi}</td>
               </tr>
             ))}
           </tbody>
