@@ -15,11 +15,14 @@ export default function Statistik() {
     const [totalUserActive, setTotalUserActive] = useState(0)
     const [adminActive, setAdminActive] = useState(0)
 
+    const [userLogin, setUserLogin] = useState([])
+
     function olehData(data) {
         try {
             setUserActive(data.filter((i) => i.status === "Aktif" && i.role === "User").length)
             setTotalUserActive(data.filter((i) => i.status === "Aktif").length)
             setAdminActive(data.filter((i) => i.status === "Aktif" && i.role === "Admin").length)
+            setUserLogin(data.filter((i) => i.isLoggedIn === true))
         } catch (error) {
             console.log(error)
         }
@@ -69,7 +72,7 @@ export default function Statistik() {
                             <p><span style={{ color: "lightgreen" }}>Admin</span> Active</p>
                         </div>
                     </UserCount>
-                    <TemplatePagination></TemplatePagination>
+                    <TemplatePagination getUser={userLogin}></TemplatePagination>
                 </Content>
             </Container>
         </>
