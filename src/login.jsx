@@ -124,7 +124,6 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
-    border: 1px solid white;
     color: white;
     width: 90%;
     height: 200px;
