@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 // Component
 import styled from 'styled-components'
 import Navbar from './components/navbar'
+import EmailLogin from './components/login/loginByEmail'
 
 // Firebase
 import { db, auth } from "./db/firebase"
@@ -13,6 +14,7 @@ import { addDoc, collection, doc, getDocs, query, Timestamp, updateDoc, where } 
 export default function Login() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [toggleFormLogin, setToggleFormLogin] = useState(true)
 
     // Button update
     const [googleLoading, setGoogleLoading] = useState("Google")
@@ -85,16 +87,21 @@ export default function Login() {
         }
     }
 
+    function handleParams(value) {
+        setToggleFormLogin(value)
+    }
+
     return (
         <>
             <Navbar></Navbar>
+            {toggleFormLogin && (<EmailLogin toggleForm={handleParams} />)}
             <Container>
                 <Content>
                     {isLoggedIn && (<Status style={{ color: "lightgreen" }}>Anda sedang login</Status>)}
                     {!isLoggedIn && (<Status style={{ color: "red" }}>Anda sedang Logout</Status>)}
                     <LoginOption>
                         {!isLoggedIn && (<button onClick={() => googleLogin()}>{googleLoading}</button>)}
-                        {!isLoggedIn && (<button>Email/Password</button>)}
+                        {!isLoggedIn && (<button onClick={() => setToggleFormLogin(!toggleFormLogin)}>Email/Password</button>)}
                         {isLoggedIn && (<button onClick={() => userLogout()} style={{ backgroundColor: "darkred", color: "white" }}>{btnLogout}</button>)}
                     </LoginOption>
                 </Content>
