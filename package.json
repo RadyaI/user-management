@@ -17,7 +17,8 @@
     "react-paginate": "^8.2.0",
     "react-router": "^7.1.1",
     "styled-components": "^6.1.13",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "swiper": "^11.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

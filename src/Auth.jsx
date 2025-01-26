@@ -1,25 +1,50 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
+
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 
 export default function Auth() {
 
-    const [display, setDisplay] = useState("login")
+    // const [display, setDisplay] = useState("login")
+    useEffect(() => {
+        new Swiper('.swiper', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: true,
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            // scrollbar: {
+            //     el: '.swiper-scrollbar',
+            // },
+        });
+    }, [])
 
     return (
         <>
-            <Container>
+            <div className="swiper" style={{ width: "600px", height: "300px" }}>
+                <div className="swiper-wrapper">
+                    <div className="swiper-slide">Slide 1</div>
+                    <div className="swiper-slide">Slide 2</div>
+                    <div className="swiper-slide">Slide 3</div>
+                    ...
+                </div>
+                <div className="swiper-pagination"></div>
 
-                {display === "login" && (<Login>
-                    <p onClick={() => setDisplay("register")} >SignUp</p>
-                    INI SEMUA HALAMAN LOGIN
-                </Login>)}
-
-                {display === "register" && (<Register>
-                    <p onClick={() => setDisplay("login")}>SignIn</p>
-                    INI SEMUA HALAMAN REGISTER
-                </Register>)}
-
-            </Container>
+                <div className="swiper-button-prev"></div>
+                <div className="swiper-button-next"></div>
+            </div>
         </>
     )
 }
