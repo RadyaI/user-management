@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import User from "../user";
 import statistik from "../statistik";
 import Login from '../login'
+import Auth from "../Auth";
 
 const router = createBrowserRouter([
     {
@@ -13,8 +14,12 @@ const router = createBrowserRouter([
         Component: statistik
     },
     {
-        path: "login",
+        path: "/login",
         Component: Login
+    },
+    {
+        path: "/auth",
+        Component: Auth
     }
 ])
 
