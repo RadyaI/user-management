@@ -14,7 +14,7 @@ import { addDoc, collection, doc, getDocs, query, Timestamp, updateDoc, where } 
 export default function Login() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [toggleFormLogin, setToggleFormLogin] = useState(true)
+    const [toggleFormLogin, setToggleFormLogin] = useState(false)
 
     // Button update
     const [googleLoading, setGoogleLoading] = useState("Google")
