@@ -31,7 +31,6 @@ export default function Login() {
             setGoogleLoading("Loading...")
             let id;
             let newUser = {
-                id: user.user.uid,
                 nama: user.user.displayName,
                 email: user.user.email,
                 role: "User",
@@ -53,8 +52,9 @@ export default function Login() {
                 })
                 Cookies.set("id", id)
             } else {
-                Cookies.set("id", newUser.id)
-                await addDoc(collection(db, "management"), newUser)
+                Cookies.set("id", user.user.uid)
+                const addNew = await addDoc(collection(db, "management"), newUser)
+                console.log(addNew)
             }
             Cookies.set("isLoggedIn", true)
             setIsLoggedIn(true)
