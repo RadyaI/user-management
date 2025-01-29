@@ -52,9 +52,8 @@ export default function Login() {
                 })
                 Cookies.set("id", id)
             } else {
-                Cookies.set("id", user.user.uid)
                 const addNew = await addDoc(collection(db, "management"), newUser)
-                console.log(addNew)
+                Cookies.set("id", addNew.id)
             }
             Cookies.set("isLoggedIn", true)
             setIsLoggedIn(true)
